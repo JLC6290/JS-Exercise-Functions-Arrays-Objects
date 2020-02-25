@@ -1,3 +1,5 @@
+const inventory = require ("./data/inventory.js");
+
 // ⭐️ Example Challenge start ⭐️
 
 /**
@@ -199,7 +201,21 @@ function getCarInfoById(inventory, carID) {
  * sortCarInventory returns an inventory that is sorted by car_model, ascending [A-Z].
 */
 function sortCarInventory(inventory) {
-  return inventory.car_model.sort();
+  var sorted = [];
+  let index = 0;
+  for(let i = inventory.length;i > 0;index++) {
+    if(inventory[index].car_model > inventory[index+1].car_model) {
+      inventory.push(inventory[index].splice(index, 1));
+      i++;
+    }
+    if(index >= inventory.length) {
+      index = 0;
+    }
+    else {
+      i--;
+    }
+  }
+  return inventory;
 }
 
 /**
@@ -211,8 +227,12 @@ function sortCarInventory(inventory) {
  *     (1) an array which is an inventory of cars like the one inside /data/inventory.js.
  * getModelYears returns an array containing all the 'car_year's in the inventory.
 */
-function getModelYears(/* code here */) {
-  /* code here */
+function getModelYears(inventory) {
+  var modelYears = []
+  for(let i = 0;i < inventory.length; i++) {
+    modelYears.push(inventory[i].car_year);
+  }
+  return modelYears;
 }
 
 /**
@@ -227,8 +247,14 @@ function getModelYears(/* code here */) {
  * with a `car_year` which is at most the given desired max year,
  * in the same order as they appear in the original inventory.
 */
-function getOlderCars(/* code here */) {
-  /* code here */
+function getOlderCars(inventory, maxYear) {
+  var oldCars = [];
+  for(let i = 0; i < inventory.length; i++) {
+    if(inventory[i].car_year < maxYear) {
+      oldCars.push(inventory[i].car_year);
+    }
+  }
+  return oldCars;
 }
 
 /**
@@ -242,7 +268,7 @@ function getOlderCars(/* code here */) {
  * made by either `Audi` or `Mercedes-Benz` or `Volkswagen` or `BMW`,
  * in the same order as they appear in the original inventory.
 */
-function getGermanCars(/* code here */) {
+function getGermanCars() {
   /* code here */
 }
 
