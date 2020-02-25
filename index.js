@@ -251,11 +251,13 @@ function getOlderCars(inventory, maxYear) {
   var oldCars = [];
   for(let i = 0; i < inventory.length; i++) {
     if(inventory[i].car_year < maxYear) {
-      oldCars.push(inventory[i].car_year);
+      oldCars.push(inventory[i]);
     }
   }
   return oldCars;
-}
+}  
+
+
 
 /**
  * ### Challenge `getGermanCars`
