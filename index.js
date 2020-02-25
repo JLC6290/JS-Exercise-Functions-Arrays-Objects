@@ -201,11 +201,11 @@ function getCarInfoById(inventory, carID) {
  * sortCarInventory returns an inventory that is sorted by car_model, ascending [A-Z].
 */
 function sortCarInventory(inventory) {
-  var sorted = [];
   let index = 0;
   for(let i = inventory.length;i > 0;index++) {
     if(inventory[index].car_model > inventory[index+1].car_model) {
-      inventory.push(inventory[index].splice(index, 1));
+      let transfer = inventory.splice(index, 1);
+      inventory.splice(inventory.length, 0, transfer);
       i++;
     }
     if(index >= inventory.length) {
@@ -214,6 +214,7 @@ function sortCarInventory(inventory) {
     else {
       i--;
     }
+    console.log(inventory);
   }
   return inventory;
 }
@@ -250,7 +251,7 @@ function getModelYears(inventory) {
 function getOlderCars(inventory, maxYear) {
   var oldCars = [];
   for(let i = 0; i < inventory.length; i++) {
-    if(inventory[i].car_year < maxYear) {
+    if(inventory[i].car_year <= maxYear) {
       oldCars.push(inventory[i]);
     }
   }
