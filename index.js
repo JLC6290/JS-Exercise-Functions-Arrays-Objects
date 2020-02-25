@@ -201,22 +201,29 @@ function getCarInfoById(inventory, carID) {
  * sortCarInventory returns an inventory that is sorted by car_model, ascending [A-Z].
 */
 function sortCarInventory(inventory) {
-  let index = 0;
-  for(let i = inventory.length;i > 0;index++) {
-    if(inventory[index].car_model > inventory[index+1].car_model) {
-      let transfer = inventory.splice(index, 1);
-      inventory.splice(inventory.length, 0, transfer);
-      i++;
-    }
-    if(index >= inventory.length) {
-      index = 0;
-    }
-    else {
-      i--;
-    }
-    console.log(inventory);
-  }
-  return inventory;
+  // let index = 0;
+  // for(let i = 0; i < inventory.length-1; i++) {
+  //   console.log(inventory[i]);
+  //   if(inventory[i].car_model > inventory[i+1].car_model) {
+      
+  //   }
+  //   if(index >= inventory.length) {
+  //     index = 0;
+  //   }
+  //   else {
+  //     i++;
+  //   }
+  // }
+
+
+  return inventory.sort((a, b) => {
+    if (a.car_model < b.car_model)
+      return -1;
+    if (a.car_model > b.car_model)
+      return 1;
+
+    return 0;
+  });
 }
 
 /**
